@@ -19,4 +19,7 @@ secondsconverter.py:
 Takes the user input of hours, minutes, and seconds and converts this into the total number of seconds in that time span
 
 ai_0_1.py:
-Creates a neural network that takes in a two-dimensional vector and assigns it to a binary case of 0 or 1. You can train the neural network with a list of training data and have the network make prediction on test data to see its accuracy with this script. 
+Creates a neural network that takes in a two-dimensional vector and assigns it to a binary case of 0 or 1. You can train the neural network with a list of training data and have the network make prediction on test data to see its accuracy with this script.
+
+minesweeper.py:
+Launches the game "Minesweeper"
