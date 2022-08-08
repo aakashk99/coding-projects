@@ -14,3 +14,6 @@ Takes text and returns a dictionary that lists the words and their respective fr
 
 name_converter.py:
 Takes a name in the format of First Last or First Middle Last and returns Last, First or Last, First Middle respectively
+
+secondsconverter.py:
+Takes the user input of hours, minutes, and seconds and converts this into the total number of seconds in that time span
