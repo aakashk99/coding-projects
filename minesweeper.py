@@ -13,7 +13,7 @@ class Cell:
     def create_button(self, location):
         self.cell_button = Button(
             location,
-            text = 'Text'
+            text = 'Cell'
         )
 
 
@@ -58,16 +58,13 @@ center_frame = Frame(
 center_frame.place(x=width_prct(25), y=height_prct(25))
 
 #Populating Cells
-c1 = Cell()
-c1.create_button(center_frame)
-c1.cell_button.grid(
-    column = 0, row = 0
-)
-c2 = Cell()
-c2.create_button(center_frame)
-c2.cell_button.grid(
-    column = 1, row = 0
-)
+for x in range(5):
+    for y in range(5):
+        c = Cell()
+        c.create_button(center_frame)
+        c.cell_button.grid(
+            column = y, row = x
+        )
 
 #Code that Runs the Window
 game.mainloop()
