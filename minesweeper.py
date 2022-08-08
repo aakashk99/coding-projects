@@ -5,16 +5,22 @@ game = Tk()
 #Game Features
 Width = 1440
 Height = 720
+Grid_Size = 5
 class Cell:
     def __init__(self, is_mine=False):
         self.is_mine = is_mine
         self.cell_button = None
+
+    def left_click(self, event):
+        print(event)
+        print("I am left clicked")
 
     def create_button(self, location):
         self.cell_button = Button(
             location,
             text = 'Cell'
         )
+        self.cell_button.bind('<Button-1>', self.left_click)
 
 
 #Utility Functions
@@ -58,13 +64,15 @@ center_frame = Frame(
 center_frame.place(x=width_prct(25), y=height_prct(25))
 
 #Populating Cells
-for x in range(5):
-    for y in range(5):
+for x in range(Grid_Size):
+    for y in range(Grid_Size):
         c = Cell()
         c.create_button(center_frame)
         c.cell_button.grid(
             column = y, row = x
         )
+
+
 
 #Code that Runs the Window
 game.mainloop()
