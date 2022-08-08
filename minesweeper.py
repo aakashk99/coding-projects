@@ -2,9 +2,20 @@ from tkinter import *
 
 game = Tk()
 
-#Game Settings
+#Game Features
 Width = 1440
 Height = 720
+class Cell:
+    def __init__(self, is_mine=False):
+        self.is_mine = is_mine
+        self.cell_button = None
+
+    def create_button(self, location):
+        btn = Button(
+            location,
+            text = 'Text'
+        )
+        self.cell_button = btn
 
 #Utility Functions
 def height_prct(percentage):
@@ -45,5 +56,12 @@ center_frame = Frame(
     height = height_prct(75)
 )
 center_frame.place(x=width_prct(25), y=height_prct(25))
+
+c1 = Cell()
+c1.create_button(center_frame)
+c1.cell_button.place(
+    x=0, y=0
+)
+
 #Code that Runs the Window
 game.mainloop()
