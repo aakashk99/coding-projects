@@ -15,13 +15,17 @@ class Cell:
         print(event)
         print("I am left clicked")
 
+    def right_click(self, event):
+        print(event)
+        print("I am right clicked")
+
     def create_button(self, location):
         self.cell_button = Button(
             location,
             text = 'Cell'
         )
         self.cell_button.bind('<Button-1>', self.left_click)
-
+        self.cell_button.bind('<Button-3>', self.right_click)
 
 #Utility Functions
 def height_prct(percentage):
