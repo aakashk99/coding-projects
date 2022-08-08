@@ -6,6 +6,13 @@ game = Tk()
 Width = 1440
 Height = 720
 
+#Utility Functions
+def height_prct(percentage):
+    return Height*(percentage/100)
+
+def width_prct(percentage):
+    return Width*(percentage/100)
+
 #Settings of the Window
 game.configure(bg='green') #Color of the Background
 game.geometry(f'{Width}x{Height}') #Size of the Window
@@ -17,7 +24,7 @@ top_frame = Frame(
     game,
     bg = 'white', #Color of TopFrame
     width = Width, #Width of window
-    height = 180 #Height of window
+    height = height_prct(25) #Height of window
 )
 top_frame.place(x=0, y=0) #Location of TopLeft Corner of window for Top Frame
 
@@ -25,11 +32,11 @@ top_frame.place(x=0, y=0) #Location of TopLeft Corner of window for Top Frame
 side_frame = Frame(
     game,
     bg = 'white', #Color of TopFrame
-    width = 360, #Width of window
-    height = Height - 180 #Height of window
+    width = width_prct(25), #Width of window
+    height = height_prct(75) #Height of window
 )
 
-side_frame.place(x=0, y=180) #Location of TopLeft Corner of window for Side Frame
+side_frame.place(x=0, y=height_prct(25)) #Location of TopLeft Corner of window for Side Frame
 
 
 #Code that Runs the Window
