@@ -16,6 +16,7 @@ class Cell:
     cell_count_label = None
     left = Cell_Count - Mines_Count
     minesleft = Mines_Count
+    clickcount = 0
     def __init__(self, x, y, is_mine=False):
         self.is_mine = is_mine
         self.is_open = False
@@ -26,10 +27,34 @@ class Cell:
         Cell.all.append(self)
 
     def left_click(self, event):
-        if self.is_mine:
-            self.show_mine()
+        if Cell.clickcount == 0:
+            if self.is_open != True:
+                surrounding_cells = [
+                    self.get_cell_by_grid(self.x - 1, self.y - 1),
+                    self.get_cell_by_grid(self.x - 1, self.y),
+                    self.get_cell_by_grid(self.x - 1, self.y + 1),
+                    self.get_cell_by_grid(self.x, self.y - 1),
+                    self.get_cell_by_grid(self.x + 1, self.y - 1),
+                    self.get_cell_by_grid(self.x + 1, self.y),
+                    self.get_cell_by_grid(self.x + 1, self.y + 1),
+                    self.get_cell_by_grid(self.x, self.y + 1),
+                ]
 
-        else:
+                actual_cells = []
+                for cell in surrounding_cells:
+                    if cell != None:
+                        actual_cells.append(cell)
+                self.actual_cells = actual_cells
+                surrounding_mines = []
+                for cell in actual_cells:
+                    if cell.is_mine:
+                        surrounding_mines.append(cell)
+                self.surrounding_mine_count = len(surrounding_mines)
+            if self.surrounding_mine_count != 0:
+                ctypes.windll.user32.MessageBoxW(0, 'Please click on another cell to start game', 'Try Again', 0)
+            else:
+                Cell.clickcount += 1
+        if not self.is_mine:
             self.show_cell()
             if Cell.left == 0 and Cell.minesleft ==0:
                 ctypes.windll.user32.MessageBoxW(0, 'You Won!', 'Congratulations!', 0)
@@ -37,6 +62,11 @@ class Cell:
             if self.surrounding_mine_count == 0:
                 for cell in self.actual_cells:
                     cell.show_cell()
+
+
+
+        else:
+            self.show_mine()
 
     def right_click(self, event):
         if not self.is_flag and not self.is_open:
