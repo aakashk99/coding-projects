@@ -22,6 +22,13 @@ class Cell:
             self.show_mine()
         else:
             self.show_cell()
+            if self.surrounding_mine_count == 0:
+                for cell in self.actual_cells:
+                    cell.show_cell()
+                    if cell.surrounding_mine_count == 0:
+                        for nextcell in cell.actual_cells:
+                            nextcell.show_cell()
+
 
     def right_click(self, event):
         print(event)
@@ -60,12 +67,13 @@ class Cell:
         for cell in surrounding_cells:
             if cell != None:
                 actual_cells.append(cell)
+        self.actual_cells = actual_cells
         surrounding_mines = []
         for cell in actual_cells:
             if cell.is_mine:
                 surrounding_mines.append(cell)
-        surrounding_mine_count = len(surrounding_mines)
-        self.cell_button.configure(text = surrounding_mine_count)
+        self.surrounding_mine_count = len(surrounding_mines)
+        self.cell_button.configure(text = self.surrounding_mine_count)
 
     def create_button(self, location):
         self.cell_button = Button(
@@ -124,6 +132,7 @@ for x in range(Grid_Size):
         c.cell_button.grid(
             column = y, row = x
         )
+
 
 Cell.randomize_mines()
 
