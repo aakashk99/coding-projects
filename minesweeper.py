@@ -70,7 +70,7 @@ class Cell:
                 self.show_mine()
 
     def right_click(self, event):
-        if not self.is_flag and not self.is_open:
+        if not self.is_flag and not self.is_open and Cell.minesleft > 0:
             self.cell_button.configure(
                 bg = 'yellow'
             )
