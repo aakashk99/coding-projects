@@ -7,9 +7,11 @@ Width = 1440
 Height = 720
 Grid_Size = 5
 class Cell:
-    def __init__(self, is_mine=False):
+    def __init__(self, x, y, is_mine=False):
         self.is_mine = is_mine
         self.cell_button = None
+        self.x = x
+        self.y = y
 
     def left_click(self, event):
         print(event)
@@ -24,7 +26,7 @@ class Cell:
             location,
             width = 12,
             height = 4,
-            text = 'Cell'
+            text = f'{self.x}, {self.y}'
         )
         self.cell_button.bind('<Button-1>', self.left_click)
         self.cell_button.bind('<Button-3>', self.right_click)
@@ -72,7 +74,7 @@ center_frame.place(x=width_prct(25), y=height_prct(25))
 #Populating Cells
 for x in range(Grid_Size):
     for y in range(Grid_Size):
-        c = Cell()
+        c = Cell(x, y)
         c.create_button(center_frame)
         c.cell_button.grid(
             column = y, row = x
