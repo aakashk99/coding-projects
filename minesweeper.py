@@ -7,7 +7,7 @@ Width = 1440
 Height = 720
 Grid_Size = 5
 class Cell:
-    all = []
+    all = [] #List of Populated Cells
     def __init__(self, x, y, is_mine=False):
         self.is_mine = is_mine
         self.cell_button = None
@@ -26,6 +26,8 @@ class Cell:
     @staticmethod
     def randomize_mines(): #Randomizes location of mines
         pass
+    def __repr__(self):
+        return f'Cell({self.x}, {self.y})'
 
     def create_button(self, location):
         self.cell_button = Button(
@@ -85,6 +87,6 @@ for x in range(Grid_Size):
         c.cell_button.grid(
             column = y, row = x
         )
-
+print(Cell.all)
 #Code that Runs the Window
 game.mainloop()
