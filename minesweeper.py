@@ -1,11 +1,12 @@
 from tkinter import *
+import random
 
 game = Tk()
 
 #Game Features
 Width = 1440
 Height = 720
-Grid_Size = 5
+Grid_Size = 6
 class Cell:
     all = [] #List of Populated Cells
     def __init__(self, x, y, is_mine=False):
@@ -25,8 +26,9 @@ class Cell:
 
     @staticmethod
     def randomize_mines(): #Randomizes location of mines
-        pass
-    def __repr__(self):
+        mines = random.sample(Cell.all, round(len(Cell.all)/4))
+        print(mines)
+    def __repr__(self): #Identify mines by Grid Location
         return f'Cell({self.x}, {self.y})'
 
     def create_button(self, location):
@@ -87,6 +89,8 @@ for x in range(Grid_Size):
         c.cell_button.grid(
             column = y, row = x
         )
-print(Cell.all)
+
+Cell.randomize_mines()
+
 #Code that Runs the Window
 game.mainloop()
