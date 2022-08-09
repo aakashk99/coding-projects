@@ -1,10 +1,12 @@
 from tkinter import *
 import random
+import sys
+import ctypes
 
 game = Tk()
 
 #Game Features
-Width = 1440
+Width = 1000
 Height = 720
 Grid_Size = 6
 Cell_Count = Grid_Size**2
@@ -26,14 +28,18 @@ class Cell:
     def left_click(self, event):
         if self.is_mine:
             self.show_mine()
+
         else:
             self.show_cell()
+            if Cell.left == 0 and Cell.minesleft ==0:
+                ctypes.windll.user32.MessageBoxW(0, 'You Won!', 'Congratulations!', 0)
+                sys.exit(0)
             if self.surrounding_mine_count == 0:
                 for cell in self.actual_cells:
                     cell.show_cell()
 
     def right_click(self, event):
-        if not self.is_flag:
+        if not self.is_flag and not self.is_open:
             self.cell_button.configure(
                 bg = 'yellow'
             )
@@ -64,6 +70,8 @@ class Cell:
 
     def show_mine(self):
         self.cell_button.configure(bg = 'red')
+        ctypes.windll.user32.MessageBoxW(0, 'You clicked on a mine', 'Game Over', 0)
+        sys.exit(0)
 
     def get_cell_by_grid(self, x, y):
         #Returning a cell object by grid position
@@ -157,6 +165,18 @@ top_frame = Frame(
 )
 top_frame.place(x=0, y=0) #Location of TopLeft Corner of window for Top Frame
 
+#Game Title
+game_title = Label(
+    top_frame,
+    bg = 'black',
+    fg = 'white',
+    text = 'MINESWEEPER',
+    font = ('', 48)
+)
+game_title.place(
+    x = width_prct(29), y = 0
+)
+
 #Settings of Side Frame
 side_frame = Frame(
     game,
@@ -178,11 +198,11 @@ center_frame.place(x=width_prct(25), y=height_prct(25))
 #Setting Labels
 Cell.create_cell_count_label(side_frame)
 Cell.cell_count_label.place(
-    x=0, y=0
+    x=0, y=100
 )
 Cell.create_mine_count_label(side_frame)
 Cell.mine_count_label.place(
-    x=0, y=50
+    x=0, y=200
 )
 
 
@@ -197,6 +217,8 @@ for x in range(Grid_Size):
 
 
 Cell.randomize_mines()
+
+
 
 #Code that Runs the Window
 game.mainloop()
