@@ -54,7 +54,7 @@ class Cell:
                 ctypes.windll.user32.MessageBoxW(0, 'Please click on another cell to start game', 'Try Again', 0)
             else:
                 Cell.clickcount += 1
-        if not self.is_mine:
+        elif not self.is_mine:
             self.show_cell()
             if Cell.left == 0 and Cell.minesleft ==0:
                 ctypes.windll.user32.MessageBoxW(0, 'You Won!', 'Congratulations!', 0)
@@ -64,7 +64,7 @@ class Cell:
                     cell.show_cell()
         else:
             if Cell.clickcount == 0:
-                if self.surrounding_mine_count != 0:
+                if self.is_mine:
                     ctypes.windll.user32.MessageBoxW(0, 'Please click on another cell to start game', 'Try Again', 0)
             else:
                 self.show_mine()
