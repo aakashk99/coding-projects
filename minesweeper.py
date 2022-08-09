@@ -7,6 +7,7 @@ game = Tk()
 Width = 1440
 Height = 720
 Grid_Size = 6
+Mines_Count = (Grid_Size**2)//4
 class Cell:
     all = [] #List of Populated Cells
     def __init__(self, x, y, is_mine=False):
@@ -17,8 +18,10 @@ class Cell:
         Cell.all.append(self)
 
     def left_click(self, event):
-        print(event)
-        print("I am left clicked")
+        if self.is_mine:
+            self.show_mine()
+        else:
+            self.show_cell()
 
     def right_click(self, event):
         print(event)
@@ -26,17 +29,39 @@ class Cell:
 
     @staticmethod
     def randomize_mines(): #Randomizes location of mines
-        mines = random.sample(Cell.all, round(len(Cell.all)/4))
-        print(mines)
+        mines = random.sample(Cell.all, Mines_Count)
+        for mine in mines:
+            mine.is_mine = True
     def __repr__(self): #Identify mines by Grid Location
         return f'Cell({self.x}, {self.y})'
 
+    def show_mine(self):
+        self.cell_button.configure(bg = 'red')
+
+    def get_cell_by_grid(self, x, y):
+        #Returning a cell object by grid position
+        for cell in Cell.all:
+            if cell.x == x and cell.y == y:
+                return cell
+
+    def show_cell(self):
+        surrounding_cells = [
+            self.get_cell_by_grid(self.x - 1, self.y - 1),
+            self.get_cell_by_grid(self.x - 1, self.y),
+            self.get_cell_by_grid(self.x - 1, self.y + 1),
+            self.get_cell_by_grid(self.x, self.y - 1),
+            self.get_cell_by_grid(self.x + 1, self.y - 1),
+            self.get_cell_by_grid(self.x + 1, self.y),
+            self.get_cell_by_grid(self.x + 1, self.y + 1),
+            self.get_cell_by_grid(self.x, self.y + 1),
+        ]
+        print(surrounding_cells)
+        
     def create_button(self, location):
         self.cell_button = Button(
             location,
             width = 12,
             height = 4,
-            text = f'{self.x}, {self.y}'
         )
         self.cell_button.bind('<Button-1>', self.left_click)
         self.cell_button.bind('<Button-3>', self.right_click)
