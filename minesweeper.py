@@ -13,9 +13,11 @@ class Cell:
     all = [] #List of Populated Cells
     cell_count_label = None
     left = Cell_Count - Mines_Count
+    minesleft = Mines_Count
     def __init__(self, x, y, is_mine=False):
         self.is_mine = is_mine
         self.is_open = False
+        self.is_flag = False
         self.cell_button = None
         self.x = x
         self.y = y
@@ -31,8 +33,26 @@ class Cell:
                     cell.show_cell()
 
     def right_click(self, event):
-        print(event)
-        print("I am right clicked")
+        if not self.is_flag:
+            self.cell_button.configure(
+                bg = 'yellow'
+            )
+            Cell.minesleft -= 1
+            if Cell.mine_count_label:
+                Cell.mine_count_label.configure(
+                    text = f'Mines Left: {Cell.minesleft}'
+                )
+            self.is_flag = True
+        elif self.is_flag:
+            self.cell_button.configure(
+                bg = 'white'
+            )
+            Cell.minesleft += 1
+            if Cell.mine_count_label:
+                Cell.mine_count_label.configure(
+                    text = f'Mines Left: {Cell.minesleft}'
+                )
+            self.is_flag = False
 
     @staticmethod
     def randomize_mines(): #Randomizes location of mines
@@ -103,6 +123,17 @@ class Cell:
         )
         Cell.cell_count_label = lbl
 
+    @staticmethod
+    def create_mine_count_label(location):
+        label = Label(
+            location,
+            bg = 'black',
+            fg = 'white',
+            text = f'Mines Left: {Cell.minesleft}',
+            font = ('', 30)
+        )
+        Cell.mine_count_label = label
+
 
 #Utility Functions
 def height_prct(percentage):
@@ -144,11 +175,16 @@ center_frame = Frame(
 )
 center_frame.place(x=width_prct(25), y=height_prct(25))
 
-#Setting Label
+#Setting Labels
 Cell.create_cell_count_label(side_frame)
 Cell.cell_count_label.place(
     x=0, y=0
 )
+Cell.create_mine_count_label(side_frame)
+Cell.mine_count_label.place(
+    x=0, y=50
+)
+
 
 #Populating Cells
 for x in range(Grid_Size):
