@@ -62,11 +62,12 @@ class Cell:
             if self.surrounding_mine_count == 0:
                 for cell in self.actual_cells:
                     cell.show_cell()
-
-
-
         else:
-            self.show_mine()
+            if Cell.clickcount == 0:
+                if self.surrounding_mine_count != 0:
+                    ctypes.windll.user32.MessageBoxW(0, 'Please click on another cell to start game', 'Try Again', 0)
+            else:
+                self.show_mine()
 
     def right_click(self, event):
         if not self.is_flag and not self.is_open:
@@ -89,6 +90,9 @@ class Cell:
                     text = f'Mines Left: {Cell.minesleft}'
                 )
             self.is_flag = False
+        if Cell.left == 0 and Cell.minesleft ==0:
+            ctypes.windll.user32.MessageBoxW(0, 'You Won!', 'Congratulations!', 0)
+            sys.exit(0)
 
     @staticmethod
     def randomize_mines(): #Randomizes location of mines
