@@ -7,11 +7,13 @@ Width = 1440
 Height = 720
 Grid_Size = 5
 class Cell:
+    all = []
     def __init__(self, x, y, is_mine=False):
         self.is_mine = is_mine
         self.cell_button = None
         self.x = x
         self.y = y
+        Cell.all.append(self)
 
     def left_click(self, event):
         print(event)
@@ -20,6 +22,10 @@ class Cell:
     def right_click(self, event):
         print(event)
         print("I am right clicked")
+
+    @staticmethod
+    def randomize_mines(): #Randomizes location of mines
+        pass
 
     def create_button(self, location):
         self.cell_button = Button(
@@ -79,8 +85,6 @@ for x in range(Grid_Size):
         c.cell_button.grid(
             column = y, row = x
         )
-
-
 
 #Code that Runs the Window
 game.mainloop()
