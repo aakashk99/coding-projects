@@ -55,8 +55,13 @@ class Cell:
             self.get_cell_by_grid(self.x + 1, self.y + 1),
             self.get_cell_by_grid(self.x, self.y + 1),
         ]
-        print(surrounding_cells)
-        
+
+        actual_cells = []
+        for cell in surrounding_cells:
+            if cell != None:
+                actual_cells.append(cell)
+        print(actual_cells)
+
     def create_button(self, location):
         self.cell_button = Button(
             location,
