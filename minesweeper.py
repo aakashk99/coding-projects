@@ -51,7 +51,7 @@ class Cell:
                         surrounding_mines.append(cell)
                 self.surrounding_mine_count = len(surrounding_mines)
             if self.surrounding_mine_count != 0:
-                ctypes.windll.user32.MessageBoxW(0, 'Please click on another cell to start game', 'Try Again', 0)
+                ctypes.windll.user32.MessageBoxW(0, 'Please double click on another cell to start game', 'Try Again', 0)
             else:
                 Cell.clickcount += 1
         elif not self.is_mine:
