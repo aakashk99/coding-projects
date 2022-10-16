@@ -165,14 +165,17 @@ public class Canvas
     }
 
     /**
-     * Redraw ell shapes currently on the Canvas.
+     * Redraw all shapes currently on the Canvas.
      */
     private void redraw()
     {
         erase();
-        for(Iterator i=objects.iterator(); i.hasNext(); ) {
-            ((ShapeDescription)shapes.get(i.next())).draw(graphic);
+        for(int i=0; i<objects.size(); i++) {
+        	((ShapeDescription)shapes.get(objects.get(i))).draw(graphic);
         }
+        /*for(Iterator i=objects.iterator(); i.hasNext(); ) {
+            ((ShapeDescription)shapes.get(i.next())).draw(graphic);
+        }*/
         canvas.repaint();
     }
        
