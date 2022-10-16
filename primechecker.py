@@ -3,6 +3,8 @@ import math
 
 #calculates if a number is a prime
 def checkprime(number):
+    if number == 1 or number == 0:
+        return False
     value = abs(np.cos(((np.math.factorial((number-1))+1)/number)*np.pi))
     if value == 1:
         return True
