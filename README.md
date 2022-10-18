@@ -1,7 +1,8 @@
-# Python-Projects
-Collection of Python Scripts and Projects I have worked on in my free time.
+# Coding-Projects
 
-# Scripts and Projects:
+Collection of Python, Java, and HTML/CSS Scripts and Projects I have worked on in my free time.
+
+# Python Scripts and Projects:
 
 count.py:
 Takes user input and counts up from one to a number or counts down from a number to one
@@ -23,3 +24,21 @@ Creates a neural network that takes in a two-dimensional vector and assigns it t
 
 minesweeper.py:
 Launches the game "Minesweeper"
+
+palindromeVerifier.py:
+Takes in a word and verifies whether it is a palindrome
+
+primechecker.py:
+Takes in a number and verifies whether it is a prime number
+
+# Java Scripts and Projects
+
+iconCreator:
+Program that generates a dynamic image of an Owl whose eyes dart from left to right.
+Files - Canvas.java; Circle.java; Icon.java; Movement.java; Square.java; Triangle.java
+
+# Web Development Scripts and Projects
+
+Digital Portfolio:
+A static website that hosts a portfolio that encapsulates my work throughout high school.
+Files - index.html; aboutme.html; baseball.html; contact.html; internship.html; physics.html; programming.html; styles.css
