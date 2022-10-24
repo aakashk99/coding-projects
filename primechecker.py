@@ -5,18 +5,24 @@ import math
 def checkprime(number):
     if number == 1 or number == 0:
         return False
-    value = abs(np.cos(((np.math.factorial((number-1))+1)/number)*np.pi))
-    if value == 1:
+    elif number >= 17:
+        for i in range(2, number):
+            if number % i == 0:
+                return False
         return True
     else:
-        return False
+        value = abs(np.cos(((np.math.factorial((number-1))+1)/number)*np.pi))
+        if value == 1:
+            return True
+        else:
+            return False
 
 state = input("Welcome to Prime Checker. Begin?[Y/n] ").lower().strip()
 while state == "y":
     number = int(input("Please enter a number: "))
-    if number >= 17:
-        print("Sorry your number is too large")
-    elif checkprime(number):
+    '''if number >= 17:
+        print("Sorry your number is too large")'''
+    if checkprime(number):
         print("Your number is a prime!")
     else:
         print("Your number is not a prime")
