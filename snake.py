@@ -72,7 +72,7 @@ while True:
                 random.randint(1, screenheight-1),
                 random.randint(1, screenwidth-1)
             ]
-            if new_food not in snake:
+            if new_food not in snake and new_food not in wall_list[0:][0:]:
                 food = new_food
             else:
                 food = None
