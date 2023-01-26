@@ -56,9 +56,11 @@ class Button:
             pygame.display.update()
             print("Click2")
         usedMove.append(self.reference)
-                
+
+#Create Used Move List to track used moves                
 usedMove = []
 
+#Instantiate the Tic-Tac-Toe Grid
 font = 50 
 moveIndicator = Button((0, 15), font, "White", "", (500, 70), "Move")           
 result = Button((0,455), font, "White", "", (500, 90), "Result")
@@ -84,12 +86,8 @@ B3.show()
 C1.show()
 C2.show()
 C3.show()
-    #x,y = pygame.mouse.get_pos()
 
-        #if pygame.event.poll().type == pygame.MOUSEBUTTONDOWN and pygame.mouse.get_pressed()[0]:
-        #    if A1.rect.collidepoint(x,y) and A1.reference not in usedMove:
-
-
+#Initialize Game
 game = True
 player = 0 
 while game:
@@ -97,6 +95,8 @@ while game:
     result.show()
     x,y = pygame.mouse.get_pos()
     pygame.display.update()
+
+    #Player 1 Move
     if player == 0:
         moveIndicator.changeText("Player 1 Move")
         moveIndicator.show()
@@ -147,6 +147,7 @@ while game:
                 usedMove.append(C3.reference)
                 player = 1
 
+    #Player 1 Wins
     if A1.mark == "O" and A2.mark == "O" and A3.mark == "O":
         result.changeText("Player 1 Wins!")
         result.show()
@@ -188,6 +189,7 @@ while game:
         time.sleep(3)
         game = False
 
+    #Player 2 Moves
     if player == 1:
         moveIndicator.changeText("Player 2 Move")
         moveIndicator.show()
@@ -237,7 +239,8 @@ while game:
                 C3.show()
                 usedMove.append(C3.reference)
                 player = 0
-  
+
+    #A2 Wins
     if A1.mark == "X" and A2.mark == "X" and A3.mark == "X":
         result.changeText("Player 2 Wins!")
         result.show()
@@ -279,6 +282,7 @@ while game:
         time.sleep(3)
         game = False
 
+    #Draw
     if len(usedMove) == 9:
         result.changeText("It's a Tie!")
         result.show()
