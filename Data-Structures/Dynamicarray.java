@@ -94,7 +94,7 @@ public class Dynamicarray {
     public void removeAt(int Index) {
         if (length == 0)
             throw new RuntimeException("Empty Array");
-        if (index < 0)
+        if (Index < 0)
             throw new IllegalArgumentException("Invalid Index");
         int[] temp = new int[array.length-1];
         int skip = Index;
