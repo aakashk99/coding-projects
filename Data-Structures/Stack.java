@@ -66,6 +66,28 @@ public class Stack<T> {
     }
 
     /**
+     * Helper method used to override the equals method
+     * @return list representation of the Stack
+     */
+    private ArrayList<T> getList() {
+        return this.list;
+    }
+
+    /**
+     * @param other
+     * @return true if this Stack is equivalent to the other Stack, false otherwise
+     */
+    public boolean equals(Stack<T> other) {
+        if (this.list.size() != other.size())
+            return false;
+        for (int i = this.list.size()-1; i>=0; i--) {
+            if (this.list.get(i) != other.getList().get(i))
+                return false;
+        }
+        return true;
+    }
+
+    /**
      * Creates String representation of the Stack
      */
     public String toString() {
