@@ -4,8 +4,8 @@
  * This means that there will be no predefined Stack Capacity and no Stack Overflow Errors. 
  * 
  * @author Aakash Karlekar
- * @version 1.0
- * @since 2023-07-05
+ * @version 1.1
+ * @since 2023-11-07
  */
 
 import java.util.ArrayList;
