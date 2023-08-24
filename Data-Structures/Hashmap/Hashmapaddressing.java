@@ -276,34 +276,4 @@ public class Hashmapaddressing<K extends Comparable<K>, V extends Comparable<V>>
         }
         return output; 
     }
-
-    public static void main(String[] args) {
-        Hashmapaddressing<Integer, Integer> h1 = new Hashmapaddressing<Integer, Integer>();
-        // for (int i = 0; i < 50; i++) {
-        //     Integer randKey = (int) (Math.random()*100);
-        //     Integer randValue = (int) (Math.random()*100);
-        //     h1.put(randKey, randValue); 
-        // }
-        // System.out.println(h1);
-        // System.out.println(h1.size());
-        // System.out.println(h1.getKeys());
-        // System.out.println(h1.getValues());
-        // for (Integer key : h1.getKeys()) {
-        //     System.out.println(key + " - " + h1.find(key));
-        // }
-        for (Integer i = 0; i < 100; i++) {
-            h1.put(i, i+1);
-        }
-        for (Integer i = 0; i < 50; i++) {
-            h1.remove(i);
-        }
-        for (Integer i = 100; i < 256; i++) {
-            h1.put(i, i+2);
-        }
-        h1.clear();
-        System.out.println(h1);
-        System.out.println(h1.size());
-        System.out.println(h1.getKeys());
-        System.out.println(h1.getValues());
-    }
 }
