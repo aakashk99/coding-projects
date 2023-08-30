@@ -106,14 +106,4 @@ public class Suffixarray {
         result += this.array[this.array.length-1] + " - " + this.string.substring(this.array[this.array.length-1], this.string.length()) + "]"; 
         return result;
     }
-
-    public static void main(String[] args) {
-        Suffixarray s = new Suffixarray("Cat");
-        int[] array = s.getArray();
-        for (int val : array) {
-            System.out.print(val + " ");
-        }
-        System.out.println();
-        System.out.println(s); 
-    }
 }
