@@ -10,7 +10,7 @@ public class Suffixarray {
     private int[] array;
 
     /**
-     * One-Arugment Constructor that takes in a String and outputs its corresponding Suffix Array
+     * One-Argument Constructor that takes in a String and outputs its corresponding Suffix Array
      * @param string
      */
     public Suffixarray(String string) {
