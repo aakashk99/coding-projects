@@ -1,6 +1,10 @@
 /**
  * The Fenwicktree Class implements a Binary Indexed Tree
  * The Fenwick Tree can be used to calculate the running sum across two indices in an Array
+ * 
+ * @author Aakash Karlekar
+ * @version 1.0
+ * @since 2023-08-30
  */
 public class Fenwicktree {
     private int[] array;
